@@ -12,7 +12,7 @@ target/
 *.iws
 *.iml
 *.ipr
-
+inventory.db
 ### Eclipse ###
 .apt_generated
 .classpath

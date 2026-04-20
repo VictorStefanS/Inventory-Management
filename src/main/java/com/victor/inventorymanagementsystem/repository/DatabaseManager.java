@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DatabaseManager {
-    private static String URL = "jdbc:sqlite:inventory.db";  //protocol like https
+    private static String URL = "jdbc:sqlite:inventory.db";
 
 
     public static void setUrl(String url) {
@@ -58,6 +58,18 @@ public class DatabaseManager {
     }
 
     public static void saveItem(Item item) {
+        if(item == null){
+            System.err.println("Save failed: item is null");
+            return;
+        }
+        if(item.getName().isEmpty() || item.getCategory().isEmpty()){
+            System.err.println("Save failed: name and category must be specified");
+            return;
+        }
+        if(item.getQuantity() <= 0){
+            System.err.println("Save failed: quantity must be greater than 0");
+            return;
+        }
         String checkSql = "SELECT id FROM items WHERE name = ? AND category = ?";
         String updateSql = "UPDATE items SET quantity = ? WHERE name = ? AND category = ?";
         String insertSql = "INSERT INTO items (name, quantity, price, category) VALUES (?, ?, ?, ?)";
@@ -88,6 +100,14 @@ public class DatabaseManager {
     }
 
     public static void deleteItem(Item item) {
+        if(item == null){
+            System.err.println("Delete failed: item is null");
+            return;
+        }
+        if(item.getName().isEmpty() || item.getCategory().isEmpty()){
+            System.err.println("Delete failed: name and category must be specified");
+            return;
+        }
         String checkSql = "DELETE FROM items WHERE name = ? AND category = ?";
         try(Connection conn = connect()){
             PreparedStatement update = conn.prepareStatement(checkSql);
@@ -101,6 +121,18 @@ public class DatabaseManager {
     }
 
     public static void updatePrice(Item item) {
+        if(item == null){
+            System.err.println("Update failed: item is null");
+            return;
+        }
+        if(item.getName().isEmpty() || item.getCategory().isEmpty()){
+            System.err.println("Update failed: name and category must be specified");
+            return;
+        }
+        if(item.getPrice() <= 0){
+            System.err.println("Update failed: price must be greater than 0");
+            return;
+        }
         String updateSql = "UPDATE items SET price = ? WHERE name = ? AND category = ?";
         try(Connection conn = connect()){
             PreparedStatement update = conn.prepareStatement(updateSql);
