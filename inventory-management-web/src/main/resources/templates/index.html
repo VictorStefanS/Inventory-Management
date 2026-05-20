@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Inventory Management</title>
+    <title>StoreFlow</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -282,9 +282,13 @@
     <aside class="sidebar">
 
         <div class="logo">
-            Inventory<br>
-            <span>Management System</span>
+            StoreFlow<br>
+            <span>Inventory Management</span>
         </div>
+
+        <form th:action="@{/logout}" method="post">
+            <button type="submit" class="btn btn-danger btn-full">Logout</button>
+        </form>
 
         <!-- Add Item -->
         <div>

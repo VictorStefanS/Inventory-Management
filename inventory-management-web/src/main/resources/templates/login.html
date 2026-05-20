@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0f0f0f;
+            --surface: #181818;
+            --border: #2e2e2e;
+            --border-bright: #444;
+            --text: #e8e8e8;
+            --text-muted: #888;
+            --text-dim: #555;
+            --accent: #c8f564;
+            --accent-dim: #8aab3a;
+            --accent-bg: rgba(200, 245, 100, 0.07);
+            --red: #ff5f5f;
+            --red-bg: rgba(255, 95, 95, 0.08);
+            --radius: 4px;
+            --font-mono: 'IBM Plex Mono', monospace;
+            --font-sans: 'IBM Plex Sans', sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-sans);
+            font-size: 14px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            font-family: var(--font-mono);
+            letter-spacing: 0.06em;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            background: #222;
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-family: var(--font-sans);
+            font-size: 13px;
+            padding: 9px 12px;
+            border-radius: var(--radius);
+            width: 100%;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+        input:focus { border-color: var(--accent-dim); }
+        input::placeholder { color: var(--text-dim); }
+
+        .btn-login {
+            width: 100%;
+            margin-top: 1.25rem;
+            padding: 10px;
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: var(--accent-bg);
+            border: 1px solid var(--accent-dim);
+            color: var(--accent);
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .btn-login:hover { background: rgba(200, 245, 100, 0.14); }
+
+        .alert {
+            font-family: var(--font-mono);
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            padding: 8px 12px;
+            border-radius: var(--radius);
+            margin-bottom: 1.25rem;
+        }
+
+        .alert-error {
+            background: var(--red-bg);
+            border: 1px solid var(--red);
+            color: var(--red);
+        }
+
+        .alert-success {
+            background: var(--accent-bg);
+            border: 1px solid var(--accent-dim);
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="logo">StoreFlow</div>
+    <div class="subtitle">Inventory Management</div>
+
+    <div th:if="${param.error}" class="alert alert-error">
+        Invalid username or password
+    </div>
+    <div th:if="${param.logout}" class="alert alert-success">
+        Logged out successfully
+    </div>
+
+    <form th:action="@{/login}" method="post">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter username" autofocus/>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter password"/>
+        </div>
+        <button type="submit" class="btn-login">Sign in →</button>
+    </form>
+</div>
+
+</body>
+</html>
