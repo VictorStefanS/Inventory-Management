@@ -74,8 +74,8 @@ src/main/java/com/victor/inventorymanagementweb/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/VictorStefanS/StoreFlow-Inventory-Management-System.git
-cd StoreFlow-Inventory-Management-System
+git clone https://github.com/VictorStefanS/ StoreFlow---Inventory-Management-System
+cd  StoreFlow---Inventory-Management-System
 ```
 
 ### 2. Create the database
