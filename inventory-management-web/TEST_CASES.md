@@ -20,7 +20,7 @@ Manual test cases covering input validation, boundary conditions, and applicatio
 
 | ID | Input | Expected | Actual | Status |
 |----|-------|----------|--------|-------|
-| TC-06 | String longer than 100 characters in name field | Flash message: invalid input | Item did not process, no flash message | 🐛 Bug — Fixed: added `name.length() > 100` check to `InventoryService` |
+| TC-06 | String longer than 100 characters in name field | Flash message: invalid input | Item did not process, no flash message |  Bug — Fixed: added `name.length() > 100` check to `InventoryService` |
 | TC-07 | Spaces only in name field | Flash message: invalid input | Browser blocks submission |  Pass — browser `required` attribute treats whitespace as empty |
 | TC-08 | Special characters in name field | Flash message: invalid input | Item was processed |  Acceptable — special characters are valid in product names (e.g. "Anti-virus (3-pack)"). No SQL injection risk as JPA uses parameterised queries |
 | TC-09 | Very large number in price field | Item is processed | Item was processed |  Pass |
