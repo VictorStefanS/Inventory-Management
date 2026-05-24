@@ -7,10 +7,10 @@ A full stack inventory management application built for small business owners to
 ## Screenshots
 
 ### Login
-![Login page](screenshots/login.png)
+![Login page](Screenshots/Login.jpg)
 
 ### Stock Overview
-![Stock overview page](screenshots/dashboard.png)
+![Stock overview page](Screenshots/Dashboard.jpg)
 
 ---
 
