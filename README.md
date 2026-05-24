@@ -84,23 +84,14 @@ cp inventory-management-web/src/main/resources/application.properties.example \
    inventory-management-web/src/main/resources/application.properties
 ```
 
-Set environment variables:
-
-| Variable | Description |
-|----------|-------------|
-| `DB_USERNAME` | PostgreSQL username |
-| `DB_PASSWORD` | PostgreSQL password |
-| `APP_USERNAME` | App login username |
-| `APP_PASSWORD` | App login password |
-
-Run:
+Set the required environment variables from `application.properties.example`, then:
 
 ```bash
 cd inventory-management-web
 mvn spring-boot:run
 ```
 
-App runs at `http://localhost:8080`. Hibernate creates the schema on first run.
+App runs at `http://localhost:8080`.
 
 
 ---
@@ -108,9 +99,6 @@ App runs at `http://localhost:8080`. Hibernate creates the schema on first run.
 ## Testing
 
 Manual test cases in [TEST_CASES.md](inventory-management-web/TEST_CASES.md) — covers type mismatches, boundary conditions, and flow edge cases.
-
-One bug found and fixed during testing: items with names over 100 characters were silently rejected. Fixed by adding a length check to `InventoryService.addItem()`.
-
 ---
 
 ## Roadmap
