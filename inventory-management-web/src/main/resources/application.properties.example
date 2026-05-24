@@ -1,0 +1,13 @@
+spring.application.name=inventory-management-web
+
+spring.datasource.url=jdbc:postgresql://localhost:5432/inventorydb
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.username=${DB_USERNAME}
+spring.datasource.password=${DB_PASSWORD}
+
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+spring.security.user.name=${APP_USERNAME}
+spring.security.user.password=${APP_PASSWORD}

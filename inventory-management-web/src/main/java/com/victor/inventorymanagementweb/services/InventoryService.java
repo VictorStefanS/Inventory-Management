@@ -30,7 +30,7 @@ public class InventoryService {
 
     public OperationResult addItem(String name, int quantity, double price, String category) {
 
-            if (name == null || name.isBlank()) {
+            if (name == null || name.isBlank() || name.length() > 100) {
                 return OperationResult.INVALID_NAME;
             }
             if (quantity <= 0) {
