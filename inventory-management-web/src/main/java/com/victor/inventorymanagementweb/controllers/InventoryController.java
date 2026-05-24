@@ -73,10 +73,11 @@ public class InventoryController {
     public String deleteItem(@PathVariable Long id,
                              RedirectAttributes redirectAttributes) {
         boolean result = inventoryService.deleteItem(id);
-        if(!result) {
+        if (!result) {
             redirectAttributes.addFlashAttribute("message", "Operation failed");
         } else {
-        redirectAttributes.addFlashAttribute("message", "Item has been deleted");}
+            redirectAttributes.addFlashAttribute("message", "Item has been deleted");
+        }
         return "redirect:/";
     }
 
@@ -87,8 +88,10 @@ public class InventoryController {
 
         boolean result = inventoryService.updatePrice(id, price);
         if (!result) {
-            redirectAttributes.addFlashAttribute("message", "Price has to be greater than 0");
-        } else {redirectAttributes.addFlashAttribute("message", "Price has been updated");}
+            redirectAttributes.addFlashAttribute("message", "Update failed — item not found or invalid price");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "Price has been updated");
+        }
         return "redirect:/";
     }
 }

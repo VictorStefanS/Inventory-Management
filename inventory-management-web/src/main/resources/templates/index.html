@@ -96,6 +96,13 @@
         input[type="number"]:focus { border-color: var(--accent-dim); }
         input::placeholder { color: var(--text-dim); }
 
+        label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+        }
         .btn {
             font-family: var(--font-mono);
             font-size: 11px;
@@ -258,15 +265,6 @@
         }
         .empty span { display: block; font-size: 24px; margin-bottom: 1rem; opacity: 0.3; }
 
-        /* Search result indicator */
-        .result-count {
-            font-family: var(--font-mono);
-            font-size: 11px;
-            color: var(--text-dim);
-            margin-bottom: 1rem;
-            letter-spacing: 0.06em;
-        }
-
         /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg); }
@@ -295,10 +293,14 @@
             <div class="section-label">Add item</div>
             <form th:action="@{/add}" method="post">
                 <div class="form-group">
-                    <input type="text" name="name" placeholder="Name" required/>
-                    <input type="text" name="category" placeholder="Category"/>
-                    <input type="number" name="quantity" placeholder="Quantity" min="1" required/>
-                    <input type="number" name="price" step="0.01" placeholder="Price" min="0.01" required/>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Name" required/>
+                    <label for="category">Category</label>
+                    <input type="text" id="category" name="category" placeholder="Category"/>
+                    <label for="quantity">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" placeholder="Quantity" min="1" required/>
+                    <label for="price">Price</label>
+                    <input type="number" id="price" name="price" step="0.01" placeholder="Price" min="0.01" required/>
                 </div>
                 <button type="submit" class="btn btn-accent btn-full">+ Add</button>
             </form>
@@ -309,8 +311,10 @@
             <div class="section-label">Search</div>
             <form th:action="@{/search}" method="get">
                 <div class="form-group">
-                    <input type="text" name="name" placeholder="Item name" required/>
-                    <input type="text" name="category" placeholder="Category (optional)"/>
+                    <label for="search-name">Item name</label>
+                    <input type="text" id="search-name" name="name" placeholder="Item name" required/>
+                    <label for="search-category">Category</label>
+                    <input type="text" id="search-category" name="category" placeholder="Category (optional)"/>
                 </div>
                 <button type="submit" class="btn btn-full">Search</button>
             </form>

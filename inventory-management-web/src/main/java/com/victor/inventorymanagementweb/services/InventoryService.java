@@ -29,20 +29,19 @@ public class InventoryService {
     }
 
     public OperationResult addItem(String name, int quantity, double price, String category) {
-
-            if (name == null || name.isBlank() || name.length() > 100) {
-                return OperationResult.INVALID_NAME;
-            }
-            if (quantity <= 0) {
-                return OperationResult.NEGATIVE_QUANTITY;
-            }
-            if (price <= 0) {
-                return OperationResult.INVALID_PRICE;
-            }
-            if (category == null || category.isBlank()) {
-                category = "Unknown";
-            }
-            List<Item> matches = itemRepository.findByNameIgnoreCaseAndCategoryIgnoreCase(name, category);
+        if (name == null || name.isBlank() || name.length() > 100) {
+            return OperationResult.INVALID_NAME;
+        }
+        if (quantity <= 0) {
+            return OperationResult.NEGATIVE_QUANTITY;
+        }
+        if (price <= 0) {
+            return OperationResult.INVALID_PRICE;
+        }
+        if (category == null || category.isBlank()) {
+            category = "Unknown";
+        }
+        List<Item> matches = itemRepository.findByNameIgnoreCaseAndCategoryIgnoreCase(name, category);
         try {
             if (!matches.isEmpty()) {
                 Item existing = matches.get(0);
@@ -60,18 +59,17 @@ public class InventoryService {
     }
 
     public OperationResult sellItem(String name, int quantity, String category) {
-        if(quantity<=0){
+        if (quantity <= 0) {
             return OperationResult.NEGATIVE_QUANTITY;
         }
         try {
-        if(category == null || category.isBlank()){
-            List<Item> allMatches = itemRepository.findByNameIgnoreCase(name);
-            if(allMatches.size() > 1){
-                return OperationResult.AMBIGUOUS;
+            if (category == null || category.isBlank()) {
+                List<Item> allMatches = itemRepository.findByNameIgnoreCase(name);
+                if (allMatches.size() > 1) {
+                    return OperationResult.AMBIGUOUS;
+                }
             }
-        }
-        List<Item> matches = itemRepository.findByNameIgnoreCaseAndCategoryIgnoreCase(name, category);
-
+            List<Item> matches = itemRepository.findByNameIgnoreCaseAndCategoryIgnoreCase(name, category);
             if (matches.isEmpty()) {
                 return OperationResult.NOT_FOUND;
             }
@@ -103,10 +101,10 @@ public class InventoryService {
         if(newPrice <= 0) {
             return false;
         }
-        itemRepository.findById(id).ifPresent(item -> {
+        return itemRepository.findById(id).map(item -> {
             item.setPrice(newPrice);
             itemRepository.save(item);
-        });
-        return true;
+            return true;
+        }).orElse(false);
     }
 }

@@ -9,7 +9,6 @@ public enum OperationResult {
     GENERAL_FAILURE,
     NOT_ENOUGH_STOCK,
     ITEM_SOLD,
-    INVALID_QUANTITY,
     AMBIGUOUS,
     NOT_FOUND,
     OUT_OF_STOCK
