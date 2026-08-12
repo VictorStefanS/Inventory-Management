@@ -8,16 +8,26 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service layer for inventory operations.
+ * Handles business logic for adding, selling, updating, and managing items.
+ */
 @Service
 public class InventoryService {
 
     @Autowired
     private ItemRepository itemRepository;
 
+    /**
+     * Retrieves all items from the inventory.
+     */
     public List<Item> getAllItems() {
         return itemRepository.findAll();
     }
 
+    /**
+     * Searches for items by name and optionally by category.
+     */
     public List<Item> searchItems(String name, String category) {
         if (name == null || name.isBlank()) {
             return List.of();
@@ -28,6 +38,9 @@ public class InventoryService {
         return itemRepository.findByNameIgnoreCaseAndCategoryIgnoreCase(name, category);
     }
 
+    /**
+     * Adds a new item or updates quantity if item already exists.
+     */
     public OperationResult addItem(String name, int quantity, double price, String category) {
         if (name == null || name.isBlank() || name.length() > 100) {
             return OperationResult.INVALID_NAME;
@@ -58,6 +71,9 @@ public class InventoryService {
         }
     }
 
+    /**
+     * Processes a sale transaction by reducing item quantity.
+     */
     public OperationResult sellItem(String name, int quantity, String category) {
         if (quantity <= 0) {
             return OperationResult.NEGATIVE_QUANTITY;
@@ -88,8 +104,11 @@ public class InventoryService {
         }
     }
 
+    /**
+     * Deletes an item from the inventory.
+     */
     public boolean deleteItem(Long id) {
-        try{
+        try {
             itemRepository.deleteById(id);
             return true;
         } catch (Exception e) {
@@ -97,8 +116,11 @@ public class InventoryService {
         }
     }
 
+    /**
+     * Updates the price of an existing item.
+     */
     public boolean updatePrice(Long id, double newPrice) {
-        if(newPrice <= 0) {
+        if (newPrice <= 0) {
             return false;
         }
         return itemRepository.findById(id).map(item -> {

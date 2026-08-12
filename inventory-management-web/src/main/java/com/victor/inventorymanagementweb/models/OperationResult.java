@@ -1,5 +1,8 @@
 package com.victor.inventorymanagementweb.models;
 
+/**
+ * Enum representing operation results for inventory transactions.
+ */
 public enum OperationResult {
     ITEM_ADDED,
     INVALID_NAME,

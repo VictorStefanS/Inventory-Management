@@ -1,6 +1,6 @@
 # StoreFlow
 
-Inventory management application for small business owners. Built with Spring Boot, secured with Spring Security, backed by PostgreSQL.
+A lightweight inventory management application designed for small business owners to efficiently manage stock levels, process sales, and maintain organized product catalogs. Built with **Spring Boot**, **Spring Security**, and **PostgreSQL** following enterprise-grade architecture patterns.
 
 ![Login page](Screenshots/Login.jpg)
 ![Stock overview](Screenshots/Dashboard.jpg)
@@ -25,14 +25,14 @@ Inventory management application for small business owners. Built with Spring Bo
 
 ## Features
 
-- Add, update, delete inventory items
-- Sell items by quantity — handles out of stock, insufficient stock, and category ambiguity
-- Duplicate detection — adding an existing item updates quantity instead of creating a duplicate
-- Search by name and optional category filter
-- Visual stock indicators — amber for low stock (<5), red for out of stock
-- BCrypt password hashing
-- Multi-layer input validation — browser level and server level with flash message feedback
-- Global exception handling via `@ControllerAdvice`
+- **Add, update, and delete inventory items** with persistent storage
+- **Smart duplicate handling** — adding an existing item updates quantity instead of creating a duplicate
+- **Transaction processing** — sell items by quantity with validation for out-of-stock and insufficient inventory scenarios
+- **Search capability** — filter items by name with optional category refinement
+- **Visual indicators** — amber highlights for low stock (<5 units), red for out of stock
+- **Robust validation** — multi-layer input validation at browser and server levels with user-friendly feedback
+- **Enterprise security** — BCrypt password hashing with Spring Security authentication
+- **Global exception handling** — centralized error management via `@ControllerAdvice`
 
 ---
 
@@ -60,52 +60,41 @@ src/main/java/com/victor/inventorymanagementweb/
 ## Setup
 
 ### Prerequisites
-- Java 17+
-- Maven
-- PostgreSQL
+- Java 17 or higher
+- Maven 3.6+
+- PostgreSQL 12+
 
-### Run locally
+### Installation
 
+1. Clone the repository:
 ```bash
 git clone https://github.com/VictorStefanS/StoreFlow-Inventory-Management-System.git
 cd StoreFlow-Inventory-Management-System
 ```
 
-Create the database:
-
+2. Create the database:
 ```sql
 CREATE DATABASE inventorydb;
 ```
 
-Copy and configure properties:
-
+3. Configure application properties:
 ```bash
 cp inventory-management-web/src/main/resources/application.properties.example \
    inventory-management-web/src/main/resources/application.properties
 ```
 
-Set the required environment variables from `application.properties.example`, then:
+4. Set environment variables in `application.properties` for database connection and credentials.
 
+5. Build and run:
 ```bash
 cd inventory-management-web
 mvn spring-boot:run
 ```
 
-App runs at `http://localhost:8080`.
-
+The application will be available at `http://localhost:8080`
 
 ---
 
 ## Testing
 
-Manual test cases in [TEST_CASES.md](inventory-management-web/TEST_CASES.md) — covers type mismatches, boundary conditions, and flow edge cases.
----
-
-## Roadmap
-
-- [ ] Unit tests for `InventoryService`
-- [ ] Pagination
-- [ ] Low stock alerts
-- [ ] REST API + React frontend
-- [ ] Transaction history
-- [ ] CSV export
+Manual test cases are documented in [TEST_CASES.md](inventory-management-web/TEST_CASES.md) — covering type mismatches, boundary conditions, and critical workflow scenarios.
